@@ -1,7 +1,6 @@
-package com.softserve.tasks.task_2.task_2_1;
 
 /**
- * Created by BAXA on 15.10.2014.
+ * Created by Vasyl Danylyuk on 15.10.2014.
  */
 public class PointByGeoCoordinates implements IPoint {
     private double latitude;

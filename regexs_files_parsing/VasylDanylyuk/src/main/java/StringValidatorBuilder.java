@@ -1,5 +1,3 @@
-package com.softserve.tasks.task_2.task_2_2;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

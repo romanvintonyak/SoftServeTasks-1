@@ -1,4 +1,3 @@
-package com.softserve.tasks.task_2.task_2_2;
 
 import java.io.IOException;
 import java.util.List;

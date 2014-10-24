@@ -1,4 +1,3 @@
-package com.softserve.tasks.task_2.task_2_1;
 
 import java.util.Collection;
 import java.util.HashSet;

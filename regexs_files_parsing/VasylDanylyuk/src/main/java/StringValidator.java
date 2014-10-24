@@ -1,5 +1,3 @@
-package com.softserve.tasks.task_2.task_2_2;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

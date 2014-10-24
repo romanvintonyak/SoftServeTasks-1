@@ -1,11 +1,10 @@
-package com.softserve.tasks.task_2.task_2_1;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Random;
 
 /**
- * Created by BAXA on 15.10.2014.
+ * Created by Vasyl Danylyuk on 15.10.2014.
  */
 public class App {
     public static void main(String[] args){
