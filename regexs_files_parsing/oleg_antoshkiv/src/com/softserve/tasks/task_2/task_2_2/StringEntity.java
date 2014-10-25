@@ -24,7 +24,7 @@ public class StringEntity {
         if (validator.validate(value)) {
             entityList.add(value);
             return true;
-        } else return false;
+        } else return false;//FIXME use curly brackets for 'else' block too for better code readability
     }
 
     public ArrayList<String> values() {
