@@ -24,6 +24,7 @@ public abstract class Parser {
         Set<String> keys = stingValidators.keySet();
         for(String key: keys){
             List<String> value = new LinkedList<String>();
+            //FIXME can avoid using of 'this' keyword here
             Iterator<String> listIterator = this.sourceStrings.iterator();
             while (listIterator.hasNext()){
                 String currentString = listIterator.next();

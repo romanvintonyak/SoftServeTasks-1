@@ -7,6 +7,7 @@ import java.util.Map;
  *
  */
 public abstract class RegExpsContainer {
+	//FIXME use camelCase for variable names. E.g. regExpMap instead of RegExpMap
     private Map<String, String> RegExpMap;
 
     protected RegExpsContainer() {
