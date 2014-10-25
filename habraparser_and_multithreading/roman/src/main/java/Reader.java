@@ -1,3 +1,4 @@
+//FIXME don't use default package - create some(e.g. threads)
 import java.util.Queue;
 
 public class Reader implements Runnable {
