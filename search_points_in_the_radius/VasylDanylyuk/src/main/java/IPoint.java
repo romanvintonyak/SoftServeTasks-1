@@ -1,4 +1,3 @@
-
 /**
  * Created by Vasyl Danylyuk on 18.10.2014.
  */

@@ -1,4 +1,3 @@
-
 /**
  * Created by Vasyl Danylyuk on 15.10.2014.
  */
@@ -28,6 +27,7 @@ public class PointByGeoCoordinates implements IPoint {
     }
 
     public double getLatitudeOnRad() {
+    	//FIXME Move all 'magic' numbers into constants
         return latitude/180*Math.PI;
     }
 
