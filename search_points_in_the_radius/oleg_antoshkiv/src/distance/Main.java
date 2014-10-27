@@ -1,8 +1,10 @@
+//FIXME commit packages into GitHub. The whole structure should be committed. Not only classes, but packages too.
 package distance;
 
 import java.util.Scanner;
 import java.util.Locale;
 
+//FIXME use Main class only for running application. Don't keep all logic here.
 public class Main {
 	
 	public static void main(String args[]){
@@ -10,6 +12,8 @@ public class Main {
 		distance();
 	}
 
+	//FIXME move this logic to another class.
+	//Use Main class only as starting point for your application.
 	public static void distance(){
 		
 		final int count = 20;
@@ -44,6 +48,11 @@ public class Main {
 	}
 
 	public static void test(){
+		//FIXME A lot of duplication;
+		//move all constants to property file where you can create the next structure:
+		//city X Y. E.g. Ivano-Frankivsk 48.9117731 24.717129
+		//Parse all rows, create Point for the first line(it is Ivano-Frankivsk), create and display 
+		//in 'for' loop Point instances for the remaining rows 
 		Point pIF = new Point(48.9117731,24.717129); // Ivano-Frankivsk
 		Point pTysmenytsia = new Point(48.902202,24.847877); // Tysmenytsia
 		Point pKalush = new Point(49.0444845,24.362008); // Kalush

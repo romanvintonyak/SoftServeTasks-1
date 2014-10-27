@@ -48,6 +48,7 @@ public class Parser implements Runnable {
     }
 
     private void done() {
+    	//FIXME static fields are not used with keyword 'this'. We use 'this' only for objects.
         this.isDone = true;
     }
 }

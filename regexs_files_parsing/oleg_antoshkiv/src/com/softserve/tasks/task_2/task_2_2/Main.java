@@ -1,3 +1,4 @@
+//FIXME commit packages into GitHub. The whole structure should be committed. Not only classes, but packages too.
 package com.softserve.tasks.task_2.task_2_2;
 
 import java.io.IOException;
@@ -10,13 +11,13 @@ import java.util.Set;
  */
 public class Main {
 
-
+	//There is a lot of abstraction(wrappers, etc.) for such simple task. Try to avoid redundant abstract layers if there is no really need.
     public static void main(String[] args) {
 
         List<String> inputStrings;
         Set<StringEntity> entities = createStringEntities();
 
-        IDataReader fileReader = new InputDataReader("com\\softserve\\tasks\\task_2\\task_2_2\\data_for_parsing.txt", ";");
+        IDataReader fileReader = new InputDataReader("com/softserve/tasks/task_2/task_2_2/data_for_parsing.txt", ";");
 
         try {
             // read input strings and split by semicolon
@@ -42,6 +43,7 @@ public class Main {
         Set<StringEntity> entities = new HashSet<StringEntity>();
 
         entities.add(new StringEntity("Phone numbers",
+        		//FIXME regexp should be moved to the constants or separate property file
                 new RegExpValidator("^\\+?3?8?\\(?0[3-9][0-9]\\)?\\d{3}-?\\d{2}-?\\d{2}$")));
 
         entities.add(new StringEntity("IP addresses",
