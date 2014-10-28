@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<style>
+      #map {
+        width: 99%;
+        height: 500px;
+		border: 1px solid black;
+		background-color: #CCC;
+      }
+    </style>
+	<!-- Adding Google map API -->
+	<script src="https://maps.googleapis.com/maps/api/js"></script>
+	<script>
+		/****************************************************************************/
+		/* Custom map styles*/
+		var styles = [
+		  {
+			stylers: [
+			  { hue: "#00ffe6" },
+			  { saturation: -20 }
+			]
+		  },{
+			featureType: "road",
+			elementType: "geometry",
+			stylers: [
+			  { lightness: 100 },
+			  { visibility: "simplified" }
+			]
+		  },{
+			featureType: "road",
+			elementType: "labels",
+			stylers: [
+			  { visibility: "off" }
+			]
+		  }
+		];
+		/****************************************************************************/
+		
+		/* drawMap() - draw the map in div marked by id="map" */
+		function drawMap(coordLatLng) {
+			/* Reference to the div that the map will be loaded into */
+			var mapCanvas = document.getElementById('map');
+			document.getElementById('map').style.display = 'block';
+			
+			/* Create a custom styled map */
+			var styledMap = new google.maps.StyledMapType(styles,{name: "Corporate Map"});
+
+			/* Options for the map */
+			var zoomMap = 15;
+			/* Options for map */
+			var mapOptions = {
+				center: coordLatLng,
+				zoom: zoomMap,
+				mapTypeControlOptions: {
+					mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+				}
+			}
+
+			/* Create a map */
+			var map = new google.maps.Map(mapCanvas, mapOptions);
+			
+			/* Add a custom styled map*/
+			map.mapTypes.set('map_style', styledMap);
+			/* Set a default view for map */
+			/*map.setMapTypeId('map_style');*/
+			
+			/* Base with custom icons for markers*/
+			/*
+			var iconBase = 'http://10.10.2.108/sdn/res/';
+			*/
+			var marker = new google.maps.Marker({
+			  position: coordLatLng,
+			  map: map,
+			  title:"I"
+			  /*icon: iconBase + 'map-marker.png'*/
+			});
+		
+		}
+		/**********************************************************************************************************/
+		
+		/* Get custom location. Address take from <input> marked by id="address" */
+		function getCustomLocation() {
+			var address = document.getElementById("address").value;
+			var geocoder= new google.maps.Geocoder();
+			geocoder.geocode( { 'address': address}, 
+				function(results, status) {
+					console.log("getCustomLocation() geocode status: "+status);
+					if (status == google.maps.GeocoderStatus.OK){
+						console.log("getCustomLocation() location: "+results[0].geometry.location);
+						var coordLatLng = results[0].geometry.location;
+						drawMap(coordLatLng);
+					
+					} else {
+						window.alert("Не можна визначити Ваше місце. Вкажіть інші дані");
+						console.warn('ERROR method getCustomLocation() error status:' + status);
+					}
+				}
+			);
+		}
+		/***********************************************************************************************************/
+		
+		/* Get default location */
+		function getLocation() {    
+			if(navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(getPositionSuccess, getPositionError, positionOptions);
+			} else {
+				console.warn('ERROR method getLocation() (navigator.geolocation object == null)');
+			}
+		}
+		/* getCurrentPosition() options*/
+		var positionOptions = {
+			enableHighAccuracy: true,
+			timeout: 10000,
+			maximumAge: 10000
+		};
+		/* getCurrentPosition() success callback*/
+		function getPositionSuccess(pos) {
+			var crd = pos.coords;
+			var lat = crd.latitude;
+			var lng = crd.longitude;
+			var accuracy = crd.accuracy;
+			console.log('Latitude : ' + lat);
+			console.log('Longitude: ' + lng);
+			console.log('Accuracy : ' + accuracy);
+			/* call drawMap with coord*/
+			var coordLatLng = new google.maps.LatLng(lat, lng);
+			drawMap(coordLatLng);
+		};
+		/* getCurrentPosition() error callback*/
+		function getPositionError(err) {
+		  window.alert("Не можна визначити Ваше місце. Введіть дані для пошуку");
+		  console.warn('ERROR(' + err.code + '): ' + err.message);
+		};
+		
+		function hideMap(){
+			document.getElementById('map').style.display = 'none';
+		}
+		
+		/**********************************************************************************************************/
+	</script>
+  </head>
+  <body onload="hideMap();">
+	 <div id="map"></div>
+	 <div id="get_position">
+		<input type="button" value="Get location" onclick="getLocation()"/>
+	 </div>
+	 <div id="get_custom_position">
+		<input type="text" id="address" size="80" />
+		<input type="button" value="Get custom location" onclick="getCustomLocation()"/>
+	 </div>
+  </body>
+</html>
